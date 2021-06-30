@@ -29,9 +29,7 @@
   ============================================================================*/
 //pin constants
 const int relayRoofOpenPin1 =  3;     
-const int relayRoofOpenPin2 =  6;     
-const int relayRoofClosePin1 =  4;      
-const int relayRoofClosePin2 =  5;      
+const int relayRoofClosePin1 =  6;         
 const int fullyOpenStopSwitchPin =  8;
 const int fullyClosedStopSwitchPin =  9;
 const int ledPin =  13;
@@ -58,8 +56,6 @@ void setup()
   Firmata.begin(57600);
   pinMode(relayRoofOpenPin1, OUTPUT);
   pinMode(relayRoofClosePin1, OUTPUT);
-  pinMode(relayRoofOpenPin2, OUTPUT);
-  pinMode(relayRoofClosePin2, OUTPUT);
   pinMode(fullyOpenStopSwitchPin, INPUT);
   pinMode(fullyClosedStopSwitchPin, INPUT);
   pinMode(ledPin, OUTPUT);
@@ -123,8 +119,6 @@ void handleState() {
 void motorOff() {
   digitalWrite(relayRoofOpenPin1, LOW);
   digitalWrite(relayRoofClosePin1, LOW);
-  digitalWrite(relayRoofOpenPin2, LOW);
-  digitalWrite(relayRoofClosePin2, LOW);
   delay(1000);
 }
 
@@ -134,7 +128,6 @@ void motorOff() {
 void motorReverse() {
   motorOff();
   digitalWrite(relayRoofOpenPin1, HIGH);
-  digitalWrite(relayRoofOpenPin2, HIGH);
   hoistOnTime = millis();
 }
 
@@ -144,7 +137,6 @@ void motorReverse() {
 void motorFwd() {
   motorOff();
   digitalWrite(relayRoofClosePin1, HIGH);
-  digitalWrite(relayRoofClosePin2, HIGH);
   hoistOnTime = millis();
 }
 
